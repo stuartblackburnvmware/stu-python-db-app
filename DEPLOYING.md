@@ -17,12 +17,12 @@ To quickly test locally, run this command in the directory where `func.py` exist
 pack build stu-python-db-app --path . --builder ghcr.io/vmware-tanzu/function-buildpacks-for-knative/functions-builder:0.3.1 --env BP_FUNCTION=func.main
 ```
 
-Where `stu-private-python-app` is the name of your runnable function image.
+Where `stu-python-db-app` is the name of your runnable function image.
 
 Then run via Docker:
 
 ```
-docker run -it --rm -p 8080:8080 stu-private-python-app
+docker run -it --rm -p 8080:8080 stu-python-db-app
 ```
 
 ### HTTP
@@ -74,7 +74,7 @@ tanzu apps workload apply -f config/workload.yaml
 If you would like deploy the code from your local working directory you can use the following command:
 
 ```
-tanzu apps workload create stu-private-python-app -f config/workload.yaml \
+tanzu apps workload create stu-python-db-app -f config/workload.yaml \
   --local-path . \
   --type web
 ```
@@ -84,7 +84,7 @@ tanzu apps workload create stu-private-python-app -f config/workload.yaml \
 Determine the URL to use for the accessing the app by running:
 
 ```
-tanzu apps workload get stu-private-python-app
+tanzu apps workload get stu-python-db-app
 ```
 
 > NOTE: This depends on the TAP installation having DNS configured for the Knative ingress.
