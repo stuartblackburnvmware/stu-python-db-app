@@ -1,0 +1,37 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: stu-python-db-app
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/has-tests: "true"
+    app.kubernetes.io/part-of: stu-python-db-app
+spec:
+  source:
+    git:
+      url: https://github.com/stuartblackburnvmware/stu-python-db-app.git
+      ref:
+        branch: main
+  build:
+    env:
+      - name: BP_FUNCTION
+        value: func.main
+  params:
+  - name: testing_pipeline_matching_labels
+    value:
+      apps.tanzu.vmware.com/pipeline: test
+      apps.tanzu.vmware.com/language: python
+  - name: api_descriptor
+    value:
+      type: openapi
+      location:
+        path: "/"
+      system: made-up-system
+      owner: fake-owner
+      description: "A test api that may or may not exist"
+  serviceClaims:
+  - name: db
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ClassClaim
+      name: postgres-claim-1

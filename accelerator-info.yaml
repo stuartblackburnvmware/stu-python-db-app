@@ -1,0 +1,17 @@
+id: bf916892-f288-4553-8d23-dc31fba6ffd1
+timestamp: 2023-10-20T18:45:31Z
+username: guest
+source: TAP-GUI
+accelerator:
+  name: python-function
+  source:
+    image: stutapregistry.azurecr.io/tapimages@sha256:8c1dddd43e46d785e585612d99704d226c4afca840761f95ff019215f0381230
+fragments:
+  - name: tap-workload
+    source:
+      image: stutapregistry.azurecr.io/tapimages@sha256:d9c7d8d322f0740666ba7c752a9174d1eb66274338c4f0e211edb1d448104c2a
+options:
+  functionName: main
+  includeTap: true
+  interfaceType: http
+  projectName: stu-python-db-app

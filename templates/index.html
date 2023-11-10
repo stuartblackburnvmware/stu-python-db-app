@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amazing Database App</title>
+</head>
+<body>
+    <h1>Amazing Database App</h1>
+
+    <form action="/" method="post">
+        <label for="value">Enter a value:</label>
+        <input type="text" name="value" required>
+        <button type="submit">Save</button>
+    </form>
+
+    {% if saved %}
+        <p>Value saved successfully!</p>
+    {% endif %}
+
+    <hr>
+
+    <h2>Stored Values:</h2>
+    <form action="/" method="get">
+        <input type="hidden" name="display_clicked" value="true">
+        <button type="submit">Display Values</button>
+    </form>
+
+    {% if values and display_clicked %}
+        <ul>
+            {% for value in values %}
+                <li>{{ value[1] }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <hr>
+
+    <form action="/" method="get">
+        <input type="hidden" name="delete_clicked" value="true">
+        <button type="submit">Delete All Records</button>
+    </form>
+</body>
+</html>
